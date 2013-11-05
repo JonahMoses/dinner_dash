@@ -5,6 +5,7 @@ gem 'pg'
 
 group :developemt, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'capybara'
 end
 
 # Use SCSS for stylesheets
