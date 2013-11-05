@@ -4,12 +4,12 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
-  #validates_presence_of :email
-  #validates_presence_of :full_name
-
-  # more validations here
-  # length of password
-  # email is valid email
+  validates :display_name, length: { in: 2..32 }, :allow_blank => true
+  validates_presence_of :email
+  validates_presence_of :full_name
+  validates :password, length: { minimum: 6 }
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates :email, uniqueness: true
 
   def self.authenticate(email, password)
     user = find_by_email(email)
