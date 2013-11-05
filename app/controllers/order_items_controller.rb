@@ -29,7 +29,7 @@ class OrderItemsController < ApplicationController
 
     respond_to do |format|
       if @order_item.save
-        format.html { redirect_to @order, notice: 'Successfully added product to cart.' }
+        format.html { redirect_to user_order_path(@order.user_id,@order.id), notice: 'Successfully added product to cart.' }
         format.json { render action: 'show', status: :created, location: @order_item }
       else
         format.html { render action: 'new' }

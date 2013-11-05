@@ -34,7 +34,7 @@
   <% end %>
 </table>
 
-<%= link_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %>
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to "Empty Cart", user_order_path(@order.user_id,@order.id), data: { confirm: 'Are you sure?' }, method: :delete %>
+<%= link_to 'Edit', edit_user_order_path(@order.user_id,@order.id) %> |
+<%= link_to 'Back', user_orders_path(@order.user_id) %>
 

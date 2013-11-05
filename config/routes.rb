@@ -1,5 +1,4 @@
 Foodfight::Application.routes.draw do
-  resources :orders
   resources :order_items
 
   get "log_out" => "sessions#destroy"
@@ -7,7 +6,10 @@ Foodfight::Application.routes.draw do
   get "sign_up" => "users#new"
 
   root :to => "items#index"
-  resources :users
+  resources :users do
+    resources :orders
+  end
+
   resources :sessions
 
 
