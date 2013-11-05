@@ -1,6 +1,11 @@
 module UserHelpers
 
   def register_user
+    User.create(:email => "user@example.com",
+                 :full_name => "bo jangles",
+                 :display_name => "bj",
+                 :password => "foobarbaz",
+                 :password_confirmation => "foobarbaz")
     visit '/log_in'
     fill_in 'email', :with => "user@example.com"
     fill_in 'password', :with => "foobarbaz"

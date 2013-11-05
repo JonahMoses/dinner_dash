@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe "a user's orders", :type => :feature do
 
@@ -13,7 +14,8 @@ describe "a user's orders", :type => :feature do
     register_user
     make_an_item
     add_order_to_user
-    visit('/users/1/orders')
+    user = User.find_by_email("user@example.com")
+    visit('/users/#{user.id}/orders')
     expect(page).to have_content 'unsubmitted'
   end
 
