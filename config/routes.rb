@@ -1,7 +1,8 @@
 Foodfight::Application.routes.draw do
+  get "log_out" => "sessions#destroy"
   get "log_in" => "sessions#new"
-
   get "sign_up" => "users#new"
+
   root :to => "items#index"
   resources :users
   resources :sessions

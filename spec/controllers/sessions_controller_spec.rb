@@ -11,4 +11,19 @@ describe SessionsController do
     end
   end
 
+  describe "logging out" do
+    it "routes to /log_out" do
+      expect(:get => "/log_out").to route_to(
+        :controller => "sessions",
+        :action => "destroy"
+      )
+    end
+
+    xit "destroys session on log out" do
+      visit ("/log_in")
+      visit ("/log_out")
+      session[:user_id].should be_nil
+    end
+  end
+
 end
