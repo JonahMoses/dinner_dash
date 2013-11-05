@@ -10,5 +10,9 @@
   <%= @order.status %>
 </p>
 
+<p>
+  Item Count: <%= @order.order_items.count %>
+</p>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
