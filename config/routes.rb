@@ -1,7 +1,11 @@
 Foodfight::Application.routes.draw do
+  get "log_in" => "sessions#new"
+
   get "sign_up" => "users#new"
   root :to => "items#index"
   resources :users
+  resources :sessions
+
   resources :items
 
   # The priority is based upon order of creation: first created -> highest priority.
