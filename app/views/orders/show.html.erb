@@ -15,22 +15,27 @@
     <td><%= @order.order_items.count %></td>
   </tr>
   <tr>
-    <th>Items</th>
     <th>Title</th>
+    <th>Description</th>
     <th>Quantity</th>
     <th>Unit Price</th>
     <th>Subtotal</th>
   </tr>
   <% @order.order_items.each do |item| %>
     <tr>
-      <td></td>
       <td><%= item.item.title %></td>
+      <td><%= item.item.description %></td>
       <td><%= item.quantity %></td>
-      <td><%= item.item.price %></td>
-      <td></td>
+      <td><%= print_price item.item.price %></td>
+      <td><%= print_price item.subtotal %></td>
+      <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <th>Order Total:</th>
+      <td><%= %></td>
     </tr>
   <% end %>
 </table>
 
+<%= link_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>
+
