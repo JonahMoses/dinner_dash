@@ -25,8 +25,9 @@ class OrderItemsController < ApplicationController
   # POST /order_items
   # POST /order_items.json
   def create
-    @order_item = @order.order_items.new(quantity: 1, item_id: params[:item_id])
-
+    # @order_item = @order.order_items.new(quantity: 1, item_id: params[:item_id])
+    @order_item = @order.order_items.find_or_initialize_by_item_id(order_item_params)
+    @order_item.quantity += 1
     respond_to do |format|
       if @order_item.save
         format.html { redirect_to @order, notice: 'Successfully added product to cart.' }
@@ -70,7 +71,7 @@ class OrderItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_item_params
-      params.require(:order_item).permit(:item_id, :order_id, :quantity)
+      params.require(:item_id)
     end
 
     def load_order
