@@ -1,28 +1,18 @@
-== README
+## To get started:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- clone the project
+- bundle
 
-Things you may want to cover:
+## To set up PG locally
 
-* Ruby version
+- rake db:setup
+- rake db:migrate
 
-* System dependencies
+## Tests
 
-* Configuration
+- rake db:test:prepare will make your test db ready to run tests
+- to run tests, run 'bundle exec rspec'
+- To create test files using rspec
+  - rails g rspec:model
+  - rails g rpec:controller
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
