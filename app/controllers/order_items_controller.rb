@@ -26,17 +26,25 @@ class OrderItemsController < ApplicationController
   # POST /order_items.json
   def create
     @order_item = @order.order_items.find_or_initialize_by_item_id(params[:item_id])
-    @order_item.quantity += 1
-    respond_to do |format|
-      if @order_item.save
-        format.html { redirect_to orders_path, notice: 'Successfully added product to cart.' }
-        format.json { render action: 'show', status: :created, location: @order_item }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @order_item.errors, status: :unprocessable_entity }
+    if @order_item.active?
+      @order_item.quantity += 1
+      respond_to do |format|
+        if @order_item.save
+          format.html { redirect_to orders_path, notice: 'Successfully added product to cart.' }
+          format.json { render action: 'show', status: :created, location: @order_item }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @order_item.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to orders_path, notice: 'Item currently is not actively for sale.'
     end
   end
+
+  # def not_active?(item)
+  #   item[:active] == 'true'
+  # end
 
   # PATCH/PUT /order_items/1
   # PATCH/PUT /order_items/1.json
