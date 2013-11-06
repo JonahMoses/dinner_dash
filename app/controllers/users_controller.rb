@@ -7,19 +7,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_url, :notice => "Signed up!"
+      current_user.move_to(@user) if is_guest?
+      session[:user_id] = @user.id
+      redirect_to orders_path, :notice => "Signed up!"
     else
       render "new"
     end
   end
 
+  def is_guest?
+    current_user && current_user.guest?
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = user.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :full_name, :display_name, :password, :password_confirmation)
     end

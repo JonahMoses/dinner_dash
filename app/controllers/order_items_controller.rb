@@ -1,3 +1,5 @@
+require 'pry'
+
 class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:show, :edit, :destroy]
   before_action :load_order, only: [:create, :update]
@@ -29,7 +31,7 @@ class OrderItemsController < ApplicationController
     @order_item.quantity += 1
     respond_to do |format|
       if @order_item.save
-        format.html { redirect_to @order, notice: 'Successfully added product to cart.' }
+        format.html { redirect_to orders_path, notice: 'Successfully added product to cart.' }
         format.json { render action: 'show', status: :created, location: @order_item }
       else
         format.html { render action: 'new' }
@@ -68,18 +70,23 @@ class OrderItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_order_item
       @order_item = OrderItem.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def order_item_params
       params.require(:order_item).permit(:item_id, :order_id, :quantity)
     end
 
     def load_order
+      unless current_user
+        @user = User.new_guest
+        if @user.save
+          session[:user_id] = @user.id
+        end
+      end
       @order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
+      @order.user_id = current_user.id
       if @order.new_record?
         @order.save!
         session[:order_id] = @order.id

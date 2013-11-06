@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20131106030745) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "guest"
   end
 
 end
