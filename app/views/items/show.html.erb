@@ -10,7 +10,7 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @item.price %>
+  <%= print_price @item.price %>
 </p>
 
 <%= button_to 'Add to Cart', order_items_path(item_id: @item.id) %>
