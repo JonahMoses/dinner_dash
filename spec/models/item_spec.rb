@@ -32,4 +32,5 @@ describe Item do
     fries.valid?.should be_false
   end
 
+  it { should have_many(:categories).through(:items_categories) }
 end
