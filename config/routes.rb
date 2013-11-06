@@ -1,4 +1,6 @@
 Foodfight::Application.routes.draw do
+  resources :categories
+
   resources :orders
   resources :order_items
 
