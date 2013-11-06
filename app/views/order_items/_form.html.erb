@@ -12,16 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :item_id %><br>
-    <%= f.number_field :item_id %>
+    Item: <%= @order_item.item[:title] %>
   </div>
   <div class="field">
-    <%= f.label :order_id %><br>
-    <%= f.number_field :order_id %>
-  </div>
-  <div class="field">
-    <%= f.label :quantity %><br>
-    <%= f.number_field :quantity %>
+    <%= f.label :quantity %>: <%= f.number_field :quantity, :min=>0 %>
   </div>
   <div class="actions">
     <%= f.submit %>

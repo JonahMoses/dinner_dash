@@ -24,7 +24,7 @@
     <tr>
       <td><%= item.item.title %></td>
       <td><%= item.item.description %></td>
-      <td><%= item.quantity %></td>
+      <td><%= link_to item.quantity, edit_order_item_path(item) %></td>
       <td><%= print_price item.item.price %></td>
       <td><%= print_price item.subtotal %></td>
       <td><%= link_to 'Remove', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
