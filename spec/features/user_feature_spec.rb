@@ -4,7 +4,7 @@ describe "the signup process", :type => :feature do
 
   it "signs me up" do
     visit '/sign_up'
-    fill_in 'user_email',                 :with => "user@example.com"
+    fill_in 'user_email',                 :with => "bj@example.com"
     fill_in 'user_full_name',             :with => "Bo Jangles"
     fill_in 'user_display_name',          :with => "BJ"
     fill_in 'user_password',              :with => "foobarbaz"
@@ -17,20 +17,16 @@ end
 
 describe "the signin process" do
   before :each do
-    User.create!(:email => "user@example.com",
-                 :full_name => "bo jangles",
-                 :display_name => "bj",
-                 :password => "foobarbaz",
-                 :password_confirmation => "foobarbaz")
+    register_user
   end
 
   it "logs me in" do
-    register_user
-    expect(page).to have_content 'Logged in'
+    within("#flash_notice") do
+      expect(page).to have_content 'Logged in'
+    end
   end
 
   it "logs me out" do
-    register_user
     visit '/'
     click_link_or_button 'Log out'
     expect(page).to have_content 'Logged out'

@@ -7,6 +7,8 @@ gem 'bcrypt-ruby', :require => "bcrypt"
 group :developemt, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'capybara'
+  gem 'pry'
+  gem 'launchy'
 end
 
 group :production do
