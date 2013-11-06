@@ -23,6 +23,8 @@
     <%= f.label :price %><br>
     <%= f.text_field :price %>
   </div>
+  Active: <%= f.select :active, ['true', 'false'] %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
