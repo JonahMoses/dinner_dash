@@ -1,5 +1,3 @@
-require 'pry'
-
 class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:show, :edit, :destroy]
   before_action :load_order, only: [:create, :update]
