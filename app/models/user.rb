@@ -3,15 +3,16 @@ class User < ActiveRecord::Base
   has_many :orders
 
   before_save   :encrypt_password
-
-  validates_confirmation_of :password, unless: :guest?
-  validates_presence_of     :password, :on => :create, unless: :guest?
-  validates                 :display_name, length: { in: 2..32 }, :allow_blank => true, unless: :guest?
-  validates_presence_of     :email, unless: :guest?
-  validates_presence_of     :full_name, unless: :guest?
-  validates                 :password, length: { minimum: 6 }, unless: :guest?
-  validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, unless: :guest?
-  validates                 :email, uniqueness: true, unless: :guest?
+  with_options :unless => :guest? do |user|
+    user.validates_confirmation_of :password
+    user.validates_presence_of     :password, :on => :create
+    user.validates                 :display_name, length: { in: 2..32 }, :allow_blank => true
+    user.validates_presence_of     :email
+    user.validates_presence_of     :full_name
+    user.validates                 :password, length: { minimum: 6 }
+    user.validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+    user.validates                 :email, uniqueness: true
+  end
 
   def self.new_guest
     new { |u| u.guest = true }
