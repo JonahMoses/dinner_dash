@@ -30,6 +30,21 @@ module UserHelpers
     click_link_or_button 'Create Item'
   end
 
+  def add_item_to_order
+    visit '/items'
+    click_on('Show')
+    click_on('Add to Cart')
+  end
+
+  def register_new_user
+    fill_in 'user_email',                 :with => "armstrong@example.com"
+    fill_in 'user_full_name',             :with => "doping"
+    fill_in 'user_display_name',          :with => "tour"
+    fill_in 'user_password',              :with => "foobarbaz"
+    fill_in 'user_password_confirmation', :with => "foobarbaz"
+    click_link_or_button 'Create User'
+  end
+
 end
 
 RSpec.configure do |c|
