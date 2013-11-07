@@ -42,8 +42,19 @@ module UserHelpers
 
   def make_an_item
     # will need to be an admin
+    user = User.where(:email => "admin1@example.com").first_or_create(
+                :email => "admin1@example.com",
+                :full_name => "admin",
+                :password => "foobar",
+                :password_confirmation => "foobar",
+                :admin => true)
+    visit '/log_in'
+    fill_in 'email', :with => "admin1@example.com"
+    fill_in 'password', :with => "foobar"
+    click_link_or_button 'Save changes'
+
     visit '/items'
-    click_link_or_button 'New Item'
+    click_on 'New Item'
     fill_in 'item_title', :with => 'fries'
     fill_in 'item_description', :with => 'wet'
     fill_in 'item_price', :with => '1.99'
