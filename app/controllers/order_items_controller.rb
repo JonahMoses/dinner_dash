@@ -51,7 +51,7 @@ class OrderItemsController < ApplicationController
   def update
     @order_item = OrderItem.find_by(id: params[:id])
     respond_to do |format|
-      if params[:order_item][:quantity].to_i == 0
+      if order_quantity_set_to_zero?
         @order_item.destroy
         format.html { redirect_to @order_item.order, notice: 'Item was removed from the order.' }
       else
@@ -59,7 +59,10 @@ class OrderItemsController < ApplicationController
         format.html { redirect_to @order_item.order, notice: 'Order item was successuflly updated.' }
       end
     end
+  end
 
+  def order_quantity_set_to_zero?
+    params[:order_item][:quantity].to_i == 0
   end
 
   # DELETE /order_items/1
