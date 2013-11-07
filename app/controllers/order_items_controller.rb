@@ -92,6 +92,11 @@ class OrderItemsController < ApplicationController
     end
 
     def find_or_create_order
+      existing_order = Order.find_unsubmitted_order_for(current_user.id)
+      existing_order ? existing_order : get_order_and_assign_to_user
+    end
+
+    def get_order_and_assign_to_user
       order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
       order.user_id = current_user.id
       order

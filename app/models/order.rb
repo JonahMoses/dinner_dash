@@ -9,4 +9,8 @@ class Order < ActiveRecord::Base
     end.reduce(0,:+)
   end
 
+  def self.find_unsubmitted_order_for(user_id)
+    where(:status => 'unsubmitted').find_by_user_id(user_id)
+  end
+
 end
