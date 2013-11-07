@@ -66,3 +66,21 @@ describe "a guest user's order" do
   end
 
 end
+
+describe "maintaining a single cart over multiple logins" do
+  before :all do
+    make_an_item
+  end
+
+  it "keeps same cart for a user after log out and log back in" do
+    register_user #=> user@example.com
+    add_item_to_order
+    click_on('Log out')
+    register_user #=> user@example.com
+    add_item_to_order # is it same item?
+    click_on('Show')
+    within('.item_quantity') do
+      expect(page).to have_content('2')
+    end
+  end
+end
