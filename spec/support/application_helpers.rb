@@ -46,10 +46,8 @@ module UserHelpers
                 :email => "admin1@example.com",
                 :full_name => "admin",
                 :password => "foobar",
-                :password_confirmation => "foobar")
-    admin = User.find_by_email("admin1@example.com")
-    admin.admin = true
-    admin.save
+                :password_confirmation => "foobar",
+                :admin => true)
     visit '/log_in'
     fill_in 'email', :with => "admin1@example.com"
     fill_in 'password', :with => "foobar"
@@ -57,7 +55,6 @@ module UserHelpers
 
     visit '/items'
     click_on 'New Item'
-    save_and_open_page
     fill_in 'item_title', :with => 'fries'
     fill_in 'item_description', :with => 'wet'
     fill_in 'item_price', :with => '1.99'
