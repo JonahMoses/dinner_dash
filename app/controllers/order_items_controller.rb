@@ -73,11 +73,17 @@ class OrderItemsController < ApplicationController
     end
 
     def load_order
-      session[:user_id] = User.new_guest_user_id unless current_user
+      find_or_create_cart
+    end
+
+    def find_or_create_cart
+      create_and_log_in_guest_user unless current_user
       @order = find_or_create_order
-      if @order.new_record?
-        save_order_and_set_session
-      end
+      save_order_and_set_session if @order.new_record?
+    end
+
+    def create_and_log_in_guest_user
+      session[:user_id] = User.new_guest_user_id
     end
 
     def save_order_and_set_session
