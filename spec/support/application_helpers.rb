@@ -20,6 +20,12 @@ module UserHelpers
     click_link_or_button 'Save changes'
   end
 
+  def make_an_item_via_db
+    Item.create!(:title => 'potatoe wedges',
+                :description => 'wet',
+                :price => '1.99')
+  end
+
   def make_an_item
     # will need to be an admin
     visit '/items'

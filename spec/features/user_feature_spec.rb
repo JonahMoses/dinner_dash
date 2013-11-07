@@ -35,3 +35,13 @@ describe "the signin process" do
 
 end
 
+describe "guest user" do
+
+  it "cannot edit item" do
+    item = make_an_item_via_db
+    visit edit_item_path(item)
+    page.should have_content("Not authorized")
+  end
+
+end
+
