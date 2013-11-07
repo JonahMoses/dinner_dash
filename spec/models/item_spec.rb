@@ -55,5 +55,5 @@ describe Item do
     # this test is odd, it's returning bigDecimal
   end
 
-  it { should have_many(:categories).through(:items_categories) }
+  it { should have_many(:categories).through(:item_categories) }
 end

@@ -15,8 +15,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    session[:order_id] = nil
+    session.delete(:user_id)
+    session.delete(:order_id)
     redirect_to root_url, :notice => "Logged out!"
   end
 

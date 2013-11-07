@@ -10,7 +10,7 @@ module UserHelpers
     visit '/log_in'
     fill_in 'email', :with => "user@example.com"
     fill_in 'password', :with => "foobarbaz"
-    click_link_or_button 'Save changes'
+    click_link_or_button 'Log In'
   end
 
   def register_admin_user
@@ -24,14 +24,14 @@ module UserHelpers
     visit '/log_in'
     fill_in 'email', :with => "admin@example.com"
     fill_in 'password', :with => "foobarbaz"
-    click_link_or_button 'Save changes'
+    click_link_or_button 'Log In'
   end
 
   def log_in_user
     visit '/log_in'
     fill_in 'email', :with => "user@example.com"
     fill_in 'password', :with => "foobarbaz"
-    click_link_or_button 'Save changes'
+    click_link_or_button 'Log In'
   end
 
   def make_an_item_via_db
@@ -51,7 +51,7 @@ module UserHelpers
     visit '/log_in'
     fill_in 'email', :with => "admin1@example.com"
     fill_in 'password', :with => "foobar"
-    click_link_or_button 'Save changes'
+    click_link_or_button 'Log In'
 
     visit '/items'
     click_on 'New Item'

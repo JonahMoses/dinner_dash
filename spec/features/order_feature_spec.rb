@@ -63,6 +63,10 @@ describe "maintaining a single cart over multiple logins" do
     make_an_item
   end
 
+  after :each do
+    visit '/log_out'
+  end
+
   it "keeps same cart for a user after log out and log back in" do
     register_user #=> user@example.com
     add_item_to_order
