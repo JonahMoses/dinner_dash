@@ -2,12 +2,11 @@ class Seeder
 
   def create_data
     create_categories
+    create_orders
     10.times do
       create_item
     end
-    # 2.times do
-      create_users
-    # end
+    create_users
   end
 
 private
@@ -95,6 +94,28 @@ private
     create_user_1
     create_user_2
     # create_user_3
+  end
+
+  def create_orders
+    order_statuses.each do |order_status|
+      order = Order.create(:status => order_status)
+      puts "Created order: #{order.status}"
+    end
+  end
+
+  def order_statuses
+   [
+     'ordered',
+     'ordered',
+     'completed',
+     'completed',
+     'cancelled',
+     'cancelled',
+     'paid',
+     'paid',
+     'unsubmitted',
+     'unsubmitted'
+   ]
   end
 
 end
