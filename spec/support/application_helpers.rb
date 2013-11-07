@@ -13,6 +13,20 @@ module UserHelpers
     click_link_or_button 'Save changes'
   end
 
+  def register_admin_user
+    User.where(:email => "admin@example.com").first_or_create(
+                :email => "admin@example.com",
+                :full_name => "bo jangles",
+                :display_name => "bj",
+                :password => "foobarbaz",
+                :password_confirmation => "foobarbaz",
+                :admin => true)
+    visit '/log_in'
+    fill_in 'email', :with => "admin@example.com"
+    fill_in 'password', :with => "foobarbaz"
+    click_link_or_button 'Save changes'
+  end
+
   def log_in_user
     visit '/log_in'
     fill_in 'email', :with => "user@example.com"
