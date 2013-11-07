@@ -64,11 +64,14 @@ describe "maintaining a single cart over multiple logins" do
   end
 
   it "keeps same cart for a user after log out and log back in" do
-    # log in user register_user => user@example.com
-    # add items to order add_item_to_order
-    # log out  # need to make helper
-    # log in again register_user => user@example.com
-    # add item to order add_item_to_order # is it same item?
-    # order should have first item and second item
+    register_user #=> user@example.com
+    add_item_to_order
+    click_on('Log out')
+    register_user #=> user@example.com
+    add_item_to_order # is it same item?
+    click_on('Show')
+    within('.item_quantity') do
+      expect(page).to have_content('2')
+    end
   end
 end
