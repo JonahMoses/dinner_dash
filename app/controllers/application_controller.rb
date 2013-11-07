@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
 
   before_action :authorize
 
+  delegate :allow?, to: :current_permission
+  helper_method :allow?
+
   private
 
     def current_user

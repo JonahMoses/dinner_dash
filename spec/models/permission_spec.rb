@@ -19,7 +19,7 @@ describe Permission do
     it { should_not allow_access("items", "destroy") }
   end
 
-  describe "as guest" do
+  describe "as admin" do
     subject { Permission.new(User.new(:admin => true)) }
     it { should allow_access("items", "index") }
     it { should allow_access("items", "show") }
@@ -28,6 +28,17 @@ describe Permission do
     it { should allow_access("items", "edit") }
     it { should allow_access("items", "update") }
     it { should allow_access("items", "destroy") }
+  end
+
+  describe "as member" do
+    subject { Permission.new(User.new(:admin => false)) }
+    it { should allow_access("items", "index") }
+    it { should allow_access("items", "show") }
+    it { should_not allow_access("items", "new") }
+    it { should_not allow_access("items", "create") }
+    it { should_not allow_access("items", "edit") }
+    it { should_not allow_access("items", "update") }
+    it { should_not allow_access("items", "destroy") }
   end
 
 end

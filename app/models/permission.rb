@@ -5,6 +5,8 @@ class Permission < Struct.new(:user)
       controller == "items" && action.in?(%w[index show])
     elsif user.admin?
       true
+    else
+      controller == "items" && action.in?(%w[index show])
     end
   end
 
