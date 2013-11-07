@@ -49,17 +49,14 @@ class OrderItemsController < ApplicationController
   # PATCH/PUT /order_items/1
   # PATCH/PUT /order_items/1.json
   def update
-    @order_item = @order.order_items.find_or_initialize_by_id(order_item_params)
-
+    @order_item = OrderItem.find_by(id: params[:id])
     respond_to do |format|
       if params[:order_item][:quantity].to_i == 0
         @order_item.destroy
         format.html { redirect_to @order_item.order, notice: 'Item was removed from the order.' }
-      elsif
-        @order_item.update(order_item_params)
-        format.html { redirect_to @order_item.order, notice: 'Order item was successuflly updated.' }
       else
-        format.html { redirect_to @order_item }
+        @order_item.update(quantity: params[:order_item][:quantity].to_i)
+        format.html { redirect_to @order_item.order, notice: 'Order item was successuflly updated.' }
       end
     end
 
