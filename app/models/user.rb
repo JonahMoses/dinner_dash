@@ -42,4 +42,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.new_guest_user_id
+    @user = User.new_guest
+    return @user.id if @user.save
+  end
+
 end

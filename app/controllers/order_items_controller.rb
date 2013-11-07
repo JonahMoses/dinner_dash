@@ -2,28 +2,20 @@ class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:show, :edit, :destroy]
   before_action :load_order, only: [:create, :update]
 
-  # GET /order_items
-  # GET /order_items.json
   def index
     @order_items = OrderItem.all
   end
 
-  # GET /order_items/1
-  # GET /order_items/1.json
   def show
   end
 
-  # GET /order_items/new
   def new
     @order_item = OrderItem.new
   end
 
-  # GET /order_items/1/edit
   def edit
   end
 
-  # POST /order_items
-  # POST /order_items.json
   def create
     @order_item = @order.order_items.find_or_initialize_by_item_id(params[:item_id])
     if @order_item.active?
@@ -46,8 +38,6 @@ class OrderItemsController < ApplicationController
   #   item[:active] == 'true'
   # end
 
-  # PATCH/PUT /order_items/1
-  # PATCH/PUT /order_items/1.json
   def update
     @order_item = @order.order_items.find_or_initialize_by_id(order_item_params)
 
@@ -65,8 +55,6 @@ class OrderItemsController < ApplicationController
 
   end
 
-  # DELETE /order_items/1
-  # DELETE /order_items/1.json
   def destroy
     @order_item.destroy
     respond_to do |format|
@@ -85,17 +73,22 @@ class OrderItemsController < ApplicationController
     end
 
     def load_order
-      unless current_user
-        @user = User.new_guest
-        if @user.save
-          session[:user_id] = @user.id
-        end
-      end
-      @order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
-      @order.user_id = current_user.id
+      session[:user_id] = User.new_guest_user_id unless current_user
+      @order = find_or_create_order
       if @order.new_record?
-        @order.save!
-        session[:order_id] = @order.id
+        save_order_and_set_session
       end
     end
+
+    def save_order_and_set_session
+      @order.save!
+      session[:order_id] = @order.id
+    end
+
+    def find_or_create_order
+      order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
+      order.user_id = current_user.id
+      order
+    end
+
 end
