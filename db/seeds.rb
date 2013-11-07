@@ -43,12 +43,17 @@ private
       active: true,
       price: sample_prices.sample.to_s
     )
-    # item.categories << Category.category_names.sample.to_s
+    all_categories = Category.all
+    item.categories << all_categories.sample
+    item.categories << all_categories.sample
+    item.categories << all_categories.sample
     if item.valid?
       puts "Created item #{item.title}"
     else
       puts "Not valid item: #{item.title}"
     end
+
+    item.save
   end
 
   def create_user_1
