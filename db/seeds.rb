@@ -43,7 +43,7 @@ private
       active: true,
       price: sample_prices.sample.to_s
     )
-    #item.categories << Category.last
+    # item.categories << Category.category_names.sample.to_s
     if item.valid?
       puts "Created item #{item.title}"
     else
@@ -105,16 +105,14 @@ private
 
   def order_statuses
    [
-     'ordered',
-     'ordered',
-     'completed',
-     'completed',
-     'cancelled',
-     'cancelled',
-     'paid',
-     'paid',
      'unsubmitted',
-     'unsubmitted'
+     'unsubmitted',
+     'paid',
+     'paid',
+     'completed',
+     'completed',
+     'cancelled',
+     'cancelled'
    ]
   end
 

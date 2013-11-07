@@ -23,7 +23,17 @@
     <%= f.label :price %><br>
     <%= f.text_field :price %>
   </div>
-  Active: <%= f.select :active, ['true', 'false'] %>
+  <div class="field">
+    Categories:<br />
+    <% Category.all.each do |category| %>
+     <!--  <div style="display: inline">
+        <%= f.check_box :item_categories %>-<%= category.name %>
+      </div> -->
+    <% end %>
+  </div>
+  <div class="field">
+    Active: <%= f.select :active, ['true', 'false'] %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
