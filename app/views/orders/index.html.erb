@@ -3,7 +3,6 @@
 <table id="order_items_index_table">
   <thead>
     <tr>
-      <th>User</th>
       <th>Status</th>
       <th></th>
       <th></th>
@@ -14,7 +13,6 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.user_id %></td>
         <td><%= order.status %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
