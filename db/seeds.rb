@@ -5,6 +5,9 @@ class Seeder
     10.times do
       create_item
     end
+    # 2.times do
+      create_users
+    # end
   end
 
 private
@@ -37,7 +40,7 @@ private
   def create_item
     item = Item.create(
       title: Faker::Lorem.words(1).join(" "),
-      description: Faker::Lorem.words(10).join(" "),
+      description: Faker::Lorem.words(5).join(" "),
       active: true,
       price: sample_prices.sample.to_s
     )
@@ -47,6 +50,51 @@ private
     else
       puts "Not valid item: #{item.title}"
     end
+  end
+
+  def create_user_1
+    user = User.create(
+      email: "demo+franklin@jumpstartlab.com",
+      full_name: "Franklin Webber",
+      password: "password",
+      password_confirmation: "password"
+    )
+    if user.valid?
+      puts "Created user #{user.full_name}"
+    else
+      puts "Not valid user: #{user.full_name}"
+    end
+  end
+
+  def create_user_2
+    user = User.create(
+      email: "demo+jeff@jumpstartlab.com",
+      full_name: "Jeff",
+      display_name: "j3",
+      password: "password",
+      password_confirmation: "password"
+    )
+    if user.valid?
+      puts "Created user #{user.full_name}"
+    else
+      puts "Not valid user: #{user.full_name}"
+    end
+  end
+
+  # def user_3
+  #   User.create(
+  #     email: "demo+katrina@jumpstartlab.com",
+  #     full_name: "Katrina Owen",
+  #     display_name: "kytrinyx",
+  #     password: "password"
+  #     password_confirmation: "password"
+  #   )
+  # end
+
+  def create_users
+    create_user_1
+    create_user_2
+    # create_user_3
   end
 
 end
