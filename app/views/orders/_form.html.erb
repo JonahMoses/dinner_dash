@@ -10,10 +10,8 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    Status: <%= f.select :status, ['paid', 'ordered', 'completed', 'cancelled', 'unsubmitted'] %><br>
   </div>
   <div class="actions">
     <%= f.submit %>
