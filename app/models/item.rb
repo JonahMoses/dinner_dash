@@ -8,6 +8,7 @@ class Item < ActiveRecord::Base
   has_many                  :order_items
   has_many                  :items_categories
   has_many                  :categories, through: :items_categories
+  has_many                  :orders, through: :order_items
 
   def price=(input)
     input.delete!("$")
