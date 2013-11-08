@@ -6,4 +6,5 @@ class ItemCategory < ActiveRecord::Base
     @categories = Categories.all
   end
 
+
 end

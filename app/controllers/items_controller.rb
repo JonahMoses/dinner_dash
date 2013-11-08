@@ -1,3 +1,5 @@
+require 'pry'
+
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
@@ -32,6 +34,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
+        @item.categories = categories(params[:item][:item_categories])
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
@@ -50,12 +53,17 @@ class ItemsController < ApplicationController
   end
 
   private
+
     def set_item
       @item = Item.find(params[:id])
     end
 
     def item_params
-      params.require(:item).permit(:title, :description, :price, :active, :category)
+      params.require(:item).permit(:title, :description, :price, :active, :item_categories)
+    end
+
+    def categories(ids)
+      ids.map {|id| Category.find_by_id(id) }.compact
     end
 
 end

@@ -26,9 +26,12 @@
   <div class="field">
     Categories:<br />
     <% Category.all.each do |category| %>
-     <!--  <div style="display: inline">
-        <%= f.check_box :item_categories %>-<%= category.name %>
-      </div> -->
+      <% if @item.categories.include?(category) %>
+        <%=hidden_field_tag "item[item_categories][]", "0"%>
+        <%= check_box_tag "item[item_categories][]", category.id, true %>-<%= category.name %>
+      <% else %>
+        <%= check_box_tag "item[item_categories][]", category.id %>-<%= category.name %>
+      <% end %>
     <% end %>
   </div>
   <div class="field">

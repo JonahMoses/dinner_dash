@@ -21,4 +21,8 @@ class Item < ActiveRecord::Base
     end.join(", ")
   end
 
+  def add_categories(ids)
+    self.categories = ids.map {|id| Category.find_by_id(id) }.compact
+  end
+
 end

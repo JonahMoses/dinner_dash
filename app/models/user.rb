@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     user.validates                 :display_name, length: { in: 2..32 }, :allow_blank => true
     user.validates_presence_of     :email
     user.validates_presence_of     :full_name
-    user.validates                 :password, length: { minimum: 6 }
+    user.validates                 :password, length: { minimum: 6, on: :create }
     user.validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
     user.validates                 :email, uniqueness: true
   end

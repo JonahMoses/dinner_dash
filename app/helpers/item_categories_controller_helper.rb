@@ -1,0 +1,2 @@
+module ItemCategoriesControllerHelper
+end
