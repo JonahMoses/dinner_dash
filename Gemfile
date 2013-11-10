@@ -4,6 +4,9 @@ gem 'rails', '4.0.0'
 gem 'pg'
 gem 'bcrypt-ruby', :require => "bcrypt"
 gem 'faker'
+gem 'twitter-bootstrap-rails'
+gem 'less-rails'
+gem 'therubyracer'
 
 group :developemt, :test do
   gem 'rspec-rails', '~> 2.0'
