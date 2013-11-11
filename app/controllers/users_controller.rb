@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :update, :show]
 
   def new
     @user = User.new
@@ -15,13 +16,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    # need to limit to just current user
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render 'new'
+    end
+  end
+
+  def show
+    # need to limit to just current user
+  end
+
   def is_guest?
     current_user && current_user.guest?
   end
 
   private
     def set_user
-      @user = user.find(params[:id])
+      @user = current_user
     end
 
     def user_params

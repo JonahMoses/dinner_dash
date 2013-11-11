@@ -54,6 +54,18 @@ describe "member" do
     page.should have_content("Not authorized")
   end
 
+  it "can edit her own user details" do
+    register_changeable_user
+    visit '/'
+    click_on 'My profile'
+    fill_in 'user_email', :with => "adminOne@example.com"
+    click_link_or_button 'Update User'
+    page.status_code.should eql(200)
+    within('#top-nav') do
+      page.should have_content('adminOne@example.com')
+    end
+  end
+
 end
 
 describe "admin user" do

@@ -4,7 +4,7 @@ class Permission < Struct.new(:user)
     return true if controller == "sessions"
     return true if controller == "order_items"
     return true if controller == "orders" && action.in?(%w[new create show index])
-    return true if controller == "users" && action.in?(%w[new create])
+    return true if controller == "users" && action.in?(%w[new create show])
     return true if controller == "items" && action.in?(%w[index show])
     if user
       return true if controller == "users" && action.in?(%w[edit update])
