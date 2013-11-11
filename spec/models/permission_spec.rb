@@ -22,6 +22,8 @@ describe Permission do
     it { should allow_access("sessions", "create") }
     it { should allow_access("sessions", "destroy") }
 
+    it { should_not allow_access("orders", "edit") }
+
     it { should allow_access("users", "new") }
     it { should allow_access("users", "create") }
     it { should_not allow_access("users", "edit") }
@@ -53,6 +55,8 @@ describe Permission do
     it { should allow_access("sessions", "new") }
     it { should allow_access("sessions", "create") }
     it { should allow_access("sessions", "destroy") }
+
+    it { should_not allow_access("orders", "edit") }
 
     it { should allow_access("users", "new") }
     it { should allow_access("users", "create") }
