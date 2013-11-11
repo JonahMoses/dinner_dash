@@ -20,7 +20,9 @@
         <td><%= print_price(item.price) %></td>
         <td><%= item.category_names %></td>
         <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <% if allow? "items", "edit" %>
+          <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <% end %>
         <% if allow? "items", "destroy" %>
           <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
