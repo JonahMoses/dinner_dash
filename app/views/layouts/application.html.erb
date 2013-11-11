@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<%= render "users/user_nav" %>
+<%= render "layouts/navbar" %>
 
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
