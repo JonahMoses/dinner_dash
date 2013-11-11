@@ -23,10 +23,8 @@ class OrderItemsController < ApplicationController
       respond_to do |format|
         if @order_item.save
           format.html { redirect_to orders_path, notice: 'Successfully added product to cart.' }
-          format.json { render action: 'show', status: :created, location: @order_item }
         else
           format.html { render action: 'new' }
-          format.json { render json: @order_item.errors, status: :unprocessable_entity }
         end
       end
     else
@@ -59,7 +57,6 @@ class OrderItemsController < ApplicationController
     @order_item.destroy
     respond_to do |format|
       format.html { redirect_to orders_url }
-      format.json { head :no_content }
     end
   end
 
