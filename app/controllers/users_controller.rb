@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    # need to limit to just current user
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
@@ -29,7 +28,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # need to limit to just current user
   end
 
   def is_guest?
