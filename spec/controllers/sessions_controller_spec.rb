@@ -13,7 +13,7 @@ describe SessionsController do
 
   describe "logging out" do
     it "routes to /log_out" do
-      expect(:get => "/log_out").to route_to(
+      expect(:post => "/log_out").to route_to(
         :controller => "sessions",
         :action => "destroy"
       )
