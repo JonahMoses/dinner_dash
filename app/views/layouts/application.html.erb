@@ -13,16 +13,7 @@
       <ul class="nav">
         <li class="active"><a href="/">Home</a></li>
 
-        <% if false %>
-          <% if current_user.nil? %>
-            <li><a href="/sign_up">Sign Up</a></li>
-            <li><a href="/log_in">Log In</a></li>
-          <% else %>
-            <li><a href="/log_out">Log Out</a></li>
-          <% end %>
-        <% end %>
-
-        <%= render '/users/user_nav' %>
+        <%= render 'layouts/navbar' %>
 
       </ul>
     </div>

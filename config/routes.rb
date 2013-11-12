@@ -4,7 +4,7 @@ Foodfight::Application.routes.draw do
   resources :orders
   resources :order_items
 
-  get "log_out" => "sessions#destroy"
+  post "log_out" => "sessions#destroy"
   get "log_in" => "sessions#new"
   get "sign_up" => "users#new"
 

@@ -34,6 +34,21 @@ module UserHelpers
     click_button 'Log In'
   end
 
+  def register_changeable_user # this user's info is going to change under you
+    User.where(:email => "confused@example.com").first_or_create(
+                 :email => "confused@example.com",
+                 :full_name => "confused guy",
+                 :display_name => "conf",
+                 :password => "foobar",
+                 :password_confirmation => "foobar")
+    visit '/log_in'
+    fill_in 'email', :with => "confused@example.com"
+    fill_in 'password', :with => "foobar"
+    within('form') do
+      click_link_or_button 'Log In'
+    end
+  end
+
   def make_an_item_via_db
     Item.create!(:title => 'potatoe wedges',
                 :description => 'wet',

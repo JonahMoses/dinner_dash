@@ -3,7 +3,7 @@
   <% if current_user.guest? %>
     <li><%= link_to "Become a member", sign_up_path %></li>
   <% else %>
-    <li><%= link_to "Log Out", log_out_path %></li>
+    <li><%= link_to "Log Out", log_out_path, method: :post %></li>
   <% end %>
 <% else %>
   <li><%= link_to "Sign Up", sign_up_path %></li>

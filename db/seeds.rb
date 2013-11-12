@@ -95,9 +95,32 @@ private
   #   )
   # end
 
+  def create_admin_user
+    user = User.create(
+      email: "admin@example.com",
+      full_name: "admin",
+      display_name: "admin",
+      password: "password",
+      password_confirmation: "password"
+    )
+    if user.valid?
+      puts "Created user #{user.full_name}"
+      user.admin = true
+      user.save
+      if user.admin
+        puts "Set #{user.email} to be an admin"
+      else
+        puts "Failed to set #{user.email} to be an admin"
+      end
+    else
+      puts "Not valid user: #{user.full_name}"
+    end
+  end
+
   def create_users
     create_user_1
     create_user_2
+    create_admin_user
     # create_user_3
   end
 
