@@ -3,6 +3,7 @@ Foodfight::Application.routes.draw do
 
   resources :orders do
     post 'purchase', :on => :member
+    get 'confirmation', :on => :member
   end
 
   resources :order_items

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy, :purchase]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :purchase, :confirmation]
 
   def index
     @orders = current_user.orders.all
@@ -45,9 +45,15 @@ class OrdersController < ApplicationController
   end
 
   def purchase
-    #check validity fo order
-    # do stuff
-    #redirect as necessary
+    if @order.status == "unsubmitted" # move me into a method
+      @order.status == "paid"
+      redirect_to confirmation_order_path(@order)
+    else
+      redirect_to @order, notice: "Something went wrong with purchasing your order. Our bad."
+    end
+  end
+
+  def confirmation
   end
 
   private
