@@ -1,5 +1,5 @@
 <% if current_user %>
-  Logged in as <%= current_user.name %>.
+  <li>Logged in as <%= current_user.name %></li>
   <% if current_user.guest? %>
     <li><%= link_to "Become a member", sign_up_path %></li>
   <% else %>
