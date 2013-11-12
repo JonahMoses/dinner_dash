@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :purchase]
 
   def index
     @orders = current_user.orders.all
@@ -42,6 +42,12 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to items_path }
     end
+  end
+
+  def purchase
+    #check validity fo order
+    # do stuff
+    #redirect as necessary
   end
 
   private

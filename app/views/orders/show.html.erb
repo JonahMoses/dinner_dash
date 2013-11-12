@@ -35,6 +35,7 @@
   </tr>
 </table>
 
+<%= link_to "Purchase", purchase_order_path(@order), method: :post %>
 <%= link_to "Empty Cart", @order, data: { confirm: 'Are you sure?' }, method: :delete %>
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

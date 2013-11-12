@@ -1,7 +1,10 @@
 Foodfight::Application.routes.draw do
   resources :categories
 
-  resources :orders
+  resources :orders do
+    post 'purchase', :on => :member
+  end
+
   resources :order_items
 
   post "log_out" => "sessions#destroy"
