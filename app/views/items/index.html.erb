@@ -40,5 +40,5 @@
 </table>
 
 <% if allow? "items", "create" %>
-  <%= link_to t('.new', :default => t("helpers.links.new")), new_item_path, :class => 'btn btn-primary' %>
+  <%= link_to "New Item", new_item_path, :class => 'btn btn-primary' %>
 <% end %>

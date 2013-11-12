@@ -12,12 +12,21 @@
       <a class="brand" href="#">Hawaiian BBQ</a>
       <ul class="nav">
         <li class="active"><a href="/">Home</a></li>
-        <li><a href="/sign_up">Sign Up</a></li>
-        <li><a href="/log_in">Log In</a></li>
+
+        <% if false %>
+          <% if current_user.nil? %>
+            <li><a href="/sign_up">Sign Up</a></li>
+            <li><a href="/log_in">Log In</a></li>
+          <% else %>
+            <li><a href="/log_out">Log Out</a></li>
+          <% end %>
+        <% end %>
+
+        <%= render '/users/user_nav' %>
+
       </ul>
     </div>
   </div>
-
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>

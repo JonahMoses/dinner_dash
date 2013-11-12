@@ -28,9 +28,9 @@ describe "the signin process" do
 
   it "logs me out" do
     visit '/'
-    click_link_or_button 'Log out'
+    click_link_or_button 'Log Out'
     expect(page).to have_content 'Logged out'
-    expect(page).to have_content 'log in'
+    expect(page).to have_content 'Log In'
   end
 
 end

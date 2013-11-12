@@ -1,13 +1,11 @@
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.name %>.
-    <% if current_user.guest? %>
-      <%= link_to "Become a member", sign_up_path %>
-    <% else %>
-      <%= link_to "Log out", log_out_path %>
-    <% end %>
+<% if current_user %>
+  Logged in as <%= current_user.name %>.
+  <% if current_user.guest? %>
+    <li><%= link_to "Become a member", sign_up_path %></li>
   <% else %>
-    <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "log in", log_in_path %>
+    <li><%= link_to "Log Out", log_out_path %></li>
   <% end %>
-</div>
+<% else %>
+  <li><%= link_to "Sign Up", sign_up_path %></li>
+  <li><%= link_to "Log In", log_in_path %></li>
+<% end %>

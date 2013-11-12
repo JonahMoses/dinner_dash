@@ -10,7 +10,7 @@ module UserHelpers
     visit '/log_in'
     fill_in 'email', :with => "user@example.com"
     fill_in 'password', :with => "foobarbaz"
-    click_link_or_button 'Log In'
+    click_button 'Log In'
   end
 
   def register_admin_user
@@ -24,14 +24,14 @@ module UserHelpers
     visit '/log_in'
     fill_in 'email', :with => "admin@example.com"
     fill_in 'password', :with => "foobarbaz"
-    click_link_or_button 'Log In'
+    click_button 'Log In'
   end
 
   def log_in_user
     visit '/log_in'
     fill_in 'email', :with => "user@example.com"
     fill_in 'password', :with => "foobarbaz"
-    click_link_or_button 'Log In'
+    click_button 'Log In'
   end
 
   def make_an_item_via_db
@@ -51,19 +51,18 @@ module UserHelpers
     visit '/log_in'
     fill_in 'email', :with => "admin1@example.com"
     fill_in 'password', :with => "foobar"
-    click_link_or_button 'Log In'
+    click_button 'Log In'
 
     visit '/items'
     click_on 'New Item'
     fill_in 'item_title', :with => 'fries'
     fill_in 'item_description', :with => 'wet'
     fill_in 'item_price', :with => '1.99'
-    click_link_or_button 'Create Item'
+    click_button 'Create Item'
   end
 
   def add_item_to_order
     visit '/items'
-    click_on('Show')
     click_on('Add to Cart')
   end
 
@@ -73,7 +72,7 @@ module UserHelpers
     fill_in 'user_display_name',          :with => "tour"
     fill_in 'user_password',              :with => "foobarbaz"
     fill_in 'user_password_confirmation', :with => "foobarbaz"
-    click_link_or_button 'Create User'
+    click_button 'Create User'
   end
 
 end

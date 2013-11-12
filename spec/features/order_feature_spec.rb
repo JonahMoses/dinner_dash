@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "a logged in user's order" do
-
   before :all do
     register_user
     make_an_item
@@ -16,13 +15,11 @@ describe "a logged in user's order" do
   it "shows the added item in the order" do
     log_in_user
     visit '/items'
-    click_on('Show')
     click_on('Add to Cart')
     within("#order_items_index_table") do
       expect(page).to have_content 'unsubmitted'
     end
   end
-
 end
 
 describe "a guest user's order" do
@@ -31,8 +28,8 @@ describe "a guest user's order" do
   end
 
   it "adds item to an order" do
-      add_item_to_order
-      within("#order_items_index_table") do
+    add_item_to_order
+    within("#order_items_index_table") do
       expect(page).to have_content 'unsubmitted'
     end
   end
@@ -42,7 +39,7 @@ describe "a guest user's order" do
     within("#order_items_index_table") do
       expect(page).to have_content 'unsubmitted'
     end
-    click_on('Become a member')
+    click_on('Become a member') # should probably say Become a member (case?)
     register_new_user
     within('#flash_notice') do
       expect(page).to have_content 'Signed up!'
@@ -70,7 +67,7 @@ describe "maintaining a single cart over multiple logins" do
   it "keeps same cart for a user after log out and log back in" do
     register_user #=> user@example.com
     add_item_to_order
-    click_on('Log out')
+    click_on('Log Out')
     register_user #=> user@example.com
     add_item_to_order # is it same item?
     click_on('Show')
