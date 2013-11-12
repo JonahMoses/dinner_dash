@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
   end
 
   def purchase
-    if @order.status == "unsubmitted" # move me into a method
+    if @order.status == "unsubmitted" # move me into model.purchaseable?
       @order.status == "paid"
       redirect_to confirmation_order_path(@order)
     else
