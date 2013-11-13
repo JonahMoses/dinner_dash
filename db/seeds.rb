@@ -63,11 +63,7 @@ private
       password: "password",
       password_confirmation: "password"
     )
-    if user.valid?
-      puts "Created user #{user.full_name}"
-    else
-      puts "Not valid user: #{user.full_name}"
-    end
+   user_validation
   end
 
   def create_user_2
@@ -78,22 +74,20 @@ private
       password: "password",
       password_confirmation: "password"
     )
-    if user.valid?
-      puts "Created user #{user.full_name}"
-    else
-      puts "Not valid user: #{user.full_name}"
-    end
+    user_validation
   end
 
-  # def user_3
-  #   User.create(
-  #     email: "demo+katrina@jumpstartlab.com",
-  #     full_name: "Katrina Owen",
-  #     display_name: "kytrinyx",
-  #     password: "password"
-  #     password_confirmation: "password"
-  #   )
-  # end
+  def user_3
+    User.create(
+      email: "demo+katrina@jumpstartlab.com",
+      full_name: "Katrina Owen",
+      display_name: "kytrinyx",
+      password: "password",
+      password_confirmation: "password",
+      admin: "true"
+    )
+    user_validation
+  end
 
   def create_admin_user
     user = User.create(
@@ -117,11 +111,19 @@ private
     end
   end
 
+  def user_validation
+    if user.valid?
+      puts "Created user #{user.full_name}"
+    else
+      puts "Not valid user: #{user.full_name}"
+    end
+  end
+
   def create_users
     create_user_1
     create_user_2
+    create_user_3
     create_admin_user
-    # create_user_3
   end
 
   def create_orders
