@@ -76,6 +76,7 @@ class OrderItemsController < ApplicationController
     def find_or_create_cart
       create_and_log_in_guest_user unless current_user
       @order = find_or_create_order
+      #binding.pry
       save_order_and_set_session if @order.new_record?
     end
 
@@ -84,6 +85,7 @@ class OrderItemsController < ApplicationController
     end
 
     def save_order_and_set_session
+      #binding.pry
       @order.save!
       session[:order_id] = @order.id
     end
@@ -95,6 +97,7 @@ class OrderItemsController < ApplicationController
 
     def get_order_and_assign_to_user
       order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
+      #order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
       order.user_id = current_user.id
       order
     end
