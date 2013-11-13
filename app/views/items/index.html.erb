@@ -8,47 +8,7 @@
       <% @items.in_groups_of(3, false).each do |item_array| %>
         <div class="row">
           <% item_array.each do |item| %>
-            <div class="span4">
-              <div class="item">
-                <div class="item-image">
-                  <td><%= image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQtEOtDbCA584KYoDzwXTvMF-p-LfHJjqZPtPQpw07BSRcYaMPW") %></td>
-                </div>
-                <div class="item-details">
-                  <h5>
-                    <%= item.title %>
-                  </h5>
-                  <p class="item-description">
-                    <%= item.description %>
-                  </p>
-                  <div class="item-price pull-left">
-                    <%= print_price item.price %>
-                  </div>
-                  <div class="item-status pull-right">
-                    <%= print_status item.active %>
-                  </div>
-                  <div class="pull-right">
-                    <div class="add-btn btn btn-danger btn-sm">
-                      <%= button_to 'Add to Cart', order_items_path(item_id: item.id) %>
-                    </div>
-                  </div>
-                  <div class="item-show">
-                    <%= button_to 'Show', item %>
-                  </div>
-                  <div class="item-admin">
-                    <% if allow? "items", "edit" %>
-                      <div class="item-edit">
-                        <%= button_to 'Edit', edit_item_path(item) %>
-                      </div>
-                    <% end %>
-                    <% if allow? "items", "destroy" %>
-                      <div class="item-delete">
-                        <%= button_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <%= render partial: 'items/item', locals: { item: item } %>
           <% end %>
         </div>
       <% end %>
