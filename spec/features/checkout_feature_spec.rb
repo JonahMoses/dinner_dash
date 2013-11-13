@@ -62,7 +62,6 @@ describe "making a new order after purchasing an order" do
     click_on 'Show'
     click_on 'Purchase'
     add_item_to_order
-    save_and_open_page
     within('.unsubmitted') do
       click_on('Show')
     end
