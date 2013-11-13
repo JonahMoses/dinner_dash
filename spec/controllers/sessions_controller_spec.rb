@@ -19,11 +19,6 @@ describe SessionsController do
       )
     end
 
-    xit "destroys session on log out" do
-      visit ("/log_in")
-      visit ("/log_out")
-      session[:user_id].should be_nil
-    end
   end
 
 end

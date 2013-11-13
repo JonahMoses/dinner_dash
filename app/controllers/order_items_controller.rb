@@ -3,7 +3,7 @@ class OrderItemsController < ApplicationController
   before_action :load_order, only: [:create, :update]
 
   def index
-    @order_items = OrderItem.all
+    @order_items = OrderItem.order("created_at DESC")
   end
 
   def show
@@ -17,7 +17,7 @@ class OrderItemsController < ApplicationController
   end
 
   def create
-    @order_item = @order.order_items.find_or_initialize_by_item_id(params[:item_id])
+    @order_item = @order.order_items.find_or_initialize_by(item_id: params[:item_id])
     if @order_item.active?
       @order_item.quantity += 1
       respond_to do |format|
@@ -96,8 +96,7 @@ class OrderItemsController < ApplicationController
     end
 
     def get_order_and_assign_to_user
-      order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
-      #order = Order.find_or_initialize_by_id(session[:order_id], status: "unsubmitted")
+      order = Order.find_or_initialize_by(id: session[:order_id], status: "unsubmitted")
       order.user_id = current_user.id
       order
     end

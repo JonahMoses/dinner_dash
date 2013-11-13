@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy, :purchase, :confirmation]
 
   def index
-    @orders = current_user.orders.all
+    @orders = current_user.orders.order("created_at DESC")
   end
 
   def show

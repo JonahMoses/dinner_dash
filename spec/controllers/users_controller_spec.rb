@@ -19,7 +19,7 @@ describe UsersController do
     it "updates email address" do
       user = User.find_by(:email => "confused@example.com")
       user.update(:email => "fools@example.com")
-      expect(user.email).should eq("fools@example.com")
+      expect(user.email).to eq("fools@example.com")
     end
   end
 
