@@ -17,10 +17,24 @@
       <%= f.text_field :price, :class => 'text_field' %>
     </div>
   </div>
+
+  <div class="control-group">
+    Categories:<br />
+    <% Category.all.each do |category| %>
+      <% if @item.categories.include?(category) %>
+        <%=hidden_field_tag "item[item_categories][]", "0"%>
+        <%= check_box_tag "item[item_categories][]", category.id, true %>-<%= category.name %>
+      <% else %>
+        <%= check_box_tag "item[item_categories][]", category.id %>-<%= category.name %>
+      <% end %>
+    <% end %>
+  </div>
+
+
   <div class="control-group">
     <%= f.label :active, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :active, :class => 'text_field' %>
+      <%= f.select :active, [['In Season', true], ['Out Of Season', false]] %>
     </div>
   </div>
 
