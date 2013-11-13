@@ -4,4 +4,12 @@ module ItemsHelper
     number_to_currency price
   end
 
+  def print_status(status)
+    if true
+      "In season"
+    else
+      "Out of season"
+    end
+  end
+
 end
