@@ -32,7 +32,7 @@ describe Permission do
     it { should_not allow_access("users", "update") }
 
     it { should_not allow_access("order_items", "show") }
-    it { should_not allow_access("order_items", "edit") }
+    it { should allow_access("order_items", "edit") }
     it { should_not allow_access("order_items", "index") }
 
   end
@@ -76,7 +76,7 @@ describe Permission do
     it { should allow_access("users", "update") }
 
     it { should_not allow_access("order_items", "show") }
-    it { should_not allow_access("order_items", "edit") }
+    it { should allow_access("order_items", "edit") }
     it { should_not allow_access("order_items", "index") }
   end
 

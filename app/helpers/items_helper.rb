@@ -5,7 +5,7 @@ module ItemsHelper
   end
 
   def print_status(status)
-    if true
+    if status
       "In season"
     else
       "Out of season"
