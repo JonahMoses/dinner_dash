@@ -1,7 +1,13 @@
-<li><%= link_to "Items", items_path %></li>
-<li><%= link_to "Items in cart: --", orders_path %></a></li>
-<li><a href="#">Contact</a></li>
-<% if current_user && current_user.email %>
-  <li><%= link_to "My profile", edit_user_path(current_user.id) %></li>
-<% end %>
-<li> <%= render "users/user_nav" %></li>
+<ul class="nav">
+  <li><%= link_to "Items", items_path %></li>
+  <li class="divider-vertical"></li>
+  <li><%= link_to "Items in cart: --", orders_path %></a></li>
+  <li class="divider-vertical"></li>
+  <li><a href="#">Contact</a></li>
+  <li class="divider-vertical"></li>
+  <% if current_user && current_user.email %>
+    <li><%= link_to "My profile", edit_user_path(current_user.id) %></li>
+    <li class="divider-vertical"></li>
+  <% end %>
+</ul>
+<%= render "users/user_nav" %>

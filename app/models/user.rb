@@ -47,4 +47,12 @@ class User < ActiveRecord::Base
     return @user.id if @user.save
   end
 
+  def display_name_available?
+    if display_name != ""
+      display_name
+    else
+      full_name
+    end
+  end
+
 end
