@@ -15,7 +15,7 @@ Foodfight::Application.routes.draw do
   root :to => "items#index"
   resources :users
   resources :sessions
-
+  get "/code" => redirect("https://github.com/JonahMoses/dinner_dash")
   resources :item_categories
   resources :items
 

@@ -63,7 +63,7 @@ private
       password: "password",
       password_confirmation: "password"
     )
-   user_validation
+   user_validation(user)
   end
 
   def create_user_2
@@ -74,11 +74,11 @@ private
       password: "password",
       password_confirmation: "password"
     )
-    user_validation
+    user_validation(user)
   end
 
-  def user_3
-    User.create(
+  def create_user_3
+    user = User.create(
       email: "demo+katrina@jumpstartlab.com",
       full_name: "Katrina Owen",
       display_name: "kytrinyx",
@@ -86,7 +86,7 @@ private
       password_confirmation: "password",
       admin: "true"
     )
-    user_validation
+    user_validation(user)
   end
 
   def create_admin_user
@@ -111,7 +111,7 @@ private
     end
   end
 
-  def user_validation
+  def user_validation(user)
     if user.valid?
       puts "Created user #{user.full_name}"
     else
