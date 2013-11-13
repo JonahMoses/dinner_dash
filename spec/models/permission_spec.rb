@@ -31,6 +31,10 @@ describe Permission do
     it { should_not allow_access("users", "edit") }
     it { should_not allow_access("users", "update") }
 
+    it { should_not allow_access("order_items", "show") }
+    it { should_not allow_access("order_items", "edit") }
+    it { should_not allow_access("order_items", "index") }
+
   end
 
   describe "as admin" do
@@ -42,6 +46,10 @@ describe Permission do
     it { should allow_access("items", "edit") }
     it { should allow_access("items", "update") }
     it { should allow_access("items", "destroy") }
+
+    it { should allow_access("order_items", "show") }
+    it { should allow_access("order_items", "edit") }
+    it { should allow_access("order_items", "index") }
   end
 
   describe "as member" do
@@ -66,6 +74,10 @@ describe Permission do
     it { should allow_access("users", "create") }
     it { should allow_access("users", "edit") }
     it { should allow_access("users", "update") }
+
+    it { should_not allow_access("order_items", "show") }
+    it { should_not allow_access("order_items", "edit") }
+    it { should_not allow_access("order_items", "index") }
   end
 
 end
