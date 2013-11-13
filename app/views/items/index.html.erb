@@ -7,9 +7,7 @@
   <div class="container">
       <% @items.in_groups_of(3, false).each do |item_array| %>
         <div class="row">
-          <% item_array.each do |item| %>
-            <%= render partial: 'items/item', locals: { item: item } %>
-          <% end %>
+          <%= render partial: 'items/item', collection: item_array %>
         </div>
       <% end %>
   </div>

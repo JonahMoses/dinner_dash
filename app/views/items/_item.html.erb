@@ -22,7 +22,7 @@
                     </div>
                   </div>
                   <div class="item-show">
-                    <%= button_to 'Show', item %>
+                    <%= button_to 'Show', item, method: :get %>
                   </div>
                   <div class="item-admin">
                     <% if allow? "items", "edit" %>
