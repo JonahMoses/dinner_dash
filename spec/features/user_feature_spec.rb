@@ -61,9 +61,8 @@ describe "member" do
     fill_in 'user_email', :with => "adminOne@example.com"
     click_link_or_button 'Update User'
     page.status_code.should eql(200)
-    save_and_open_page
     within('.navbar') do
-      page.should have_content('adminOne@example.com')
+      page.should have_content('conf')
     end
   end
 

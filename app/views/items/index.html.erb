@@ -2,37 +2,16 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:active) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.title %></td>
-        <td><%= item.description %></td>
-        <td><%= item.price %></td>
-        <td><%= item.active %></td>
-        <td><%= item.category_names %></td>
-        <td><%= button_to 'Add to Cart', order_items_path(item_id: item.id) %></td>
-        <td><%= link_to 'Show', item %></td>
-        <% if allow? "items", "edit" %>
-          <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <% end %>
-        <% if allow? "items", "destroy" %>
-          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<div class="items-index">
+  <div class="container">
+      <% @items.in_groups_of(3, false).each do |item_array| %>
+        <div class="row">
+          <%= render partial: 'items/item', collection: item_array %>
+        </div>
+      <% end %>
+  </div>
+</div>
 
 <% if allow? "items", "create" %>
   <%= link_to "New Item", new_item_path, :class => 'btn btn-primary' %>

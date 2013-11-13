@@ -30,9 +30,7 @@ describe "the checkout process for a guest" do
   it "brings user to sign up page and back to order" do
     add_item_to_order
     visit '/orders'
-    save_and_open_page
     click_on 'Show'
-    save_and_open_page
     click_on 'Purchase'
     #within('h1') do
       expect(page).to have_content 'Sign Up'
@@ -44,9 +42,32 @@ describe "the checkout process for a guest" do
     fill_in 'user_password_confirmation', :with => "foobar"
     click_link_or_button 'Create User'
     click_on 'Purchase'
-    save_and_open_page
     within('.confirmation-banner') do
       expect(page).to have_content 'Confirmation'
+    end
+  end
+
+end
+
+describe "making a new order after purchasing an order" do
+
+  before :all do
+    #make_an_item_via_db
+  end
+
+  it "should create a new order after purchasing" do
+    register_user
+    add_item_to_order
+    visit '/orders'
+    click_on 'Show'
+    click_on 'Purchase'
+    add_item_to_order
+    within('.unsubmitted') do
+      click_on('Show')
+    end
+    # will have to look for first item_quanity
+    within('.item_quantity') do
+      expect(page).to have_content('1')
     end
   end
 
