@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor :password
   has_many :orders
+  before_validation :downcase_email
 
   before_save   :encrypt_password
   with_options :unless => :guest? do |user|
@@ -11,7 +12,7 @@ class User < ActiveRecord::Base
     user.validates_presence_of     :full_name
     user.validates                 :password, length: { minimum: 6, on: :create }
     user.validates_format_of       :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-    user.validates                 :email, uniqueness: true
+    user.validates                 :email, :uniqueness => { :case_sensitive => false }
   end
 
   def self.new_guest
@@ -53,6 +54,12 @@ class User < ActiveRecord::Base
     else
       full_name
     end
+  end
+
+private
+
+  def downcase_email
+    self.email = self.email.downcase if self.email.present?
   end
 
 end

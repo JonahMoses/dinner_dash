@@ -53,4 +53,22 @@ describe User do
     valid_user.valid?.should be_true
   end
 
+  it "rejects case-insensitive duplicate emails" do
+    first_user = User.new(:email => "first_user@example.com", :full_name => "yeas",
+                  :password => "foobar", :password_confirmation => "foobar")
+    first_user.save!
+    second_user = User.new(:email => "First_user@example.com", :full_name => "yeas",
+                  :password => "foobar", :password_confirmation => "foobar")
+    first_user.valid?.should be_true
+    second_user.valid?.should be_false
+  end
+
+  it "saves a users email address downcased" do
+    first_user = User.new(:email => "First_user@example.com", :full_name => "yeas",
+                    :password => "foobar", :password_confirmation => "foobar")
+    first_user.save!
+
+    expect(first_user.email).to eq("first_user@example.com")
+  end
+
 end
