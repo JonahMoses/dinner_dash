@@ -2,37 +2,58 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:active) %></th>
-      <th><%= model_class.human_attribute_name(:categories) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.title %></td>
-        <td><%= item.description %></td>
-        <td><%= print_price item.price %></td>
-        <td><%= print_status item.active %></td>
-        <td><%= item.category_names %></td>
-        <td><%= button_to 'Add to Cart', order_items_path(item_id: item.id) %></td>
-        <td><%= button_to 'Show', item %></td>
-        <% if allow? "items", "edit" %>
-          <td><%= button_to 'Edit', edit_item_path(item) %></td>
-        <% end %>
-        <% if allow? "items", "destroy" %>
-          <td><%= button_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<div class="items-index">
+  <div class="container">
+      <% @items.in_groups_of(3, false).each do |item_array| %>
+        <div class="row">
+          <% item_array.each do |item| %>
+            <div class="span4">
+              <div class="item">
+                <div class="item-image">
+                  <td><%= image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQtEOtDbCA584KYoDzwXTvMF-p-LfHJjqZPtPQpw07BSRcYaMPW") %></td>
+                </div>
+                <div class="item-details">
+                  <h5>
+                    <%= item.title %>
+                  </h5>
+                  <p class="item-description">
+                    <%= item.description %>
+                  </p>
+                  <div class="item-price pull-left">
+                    <%= print_price item.price %>
+                  </div>
+                  <div class="item-status pull-right">
+                    <%= print_status item.active %>
+                  </div>
+                  <div class="pull-right">
+                    <div class="add-btn btn btn-danger btn-sm">
+                      <%= button_to 'Add to Cart', order_items_path(item_id: item.id) %>
+                    </div>
+                  </div>
+                  <div class="item-show">
+                    <%= button_to 'Show', item %>
+                  </div>
+                  <div class="item-admin">
+                    <% if allow? "items", "edit" %>
+                      <div class="item-edit">
+                        <%= button_to 'Edit', edit_item_path(item) %>
+                      </div>
+                    <% end %>
+                    <% if allow? "items", "destroy" %>
+                      <div class="item-delete">
+                        <%= button_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+</div>
 
 <% if allow? "items", "create" %>
   <%= link_to "New Item", new_item_path, :class => 'btn btn-primary' %>

@@ -1,3 +1,26 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.items-index {
+  width: 85%;
+  float: none;
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+}
+
+.row {
+}
+
+.item {
+  background: grey;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.item-image {
+  text-align: center;
+}
