@@ -14,7 +14,7 @@
     <% @orders.each do |order| %>
       <tr>
         <td><%= order.status %></td>
-        <td><%= link_to 'Show', order %></td>
+        <td class="<%= order.status %>"><%= link_to 'Show', order %></td>
         <% if allow? "orders", "edit" %>
           <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <% end %>

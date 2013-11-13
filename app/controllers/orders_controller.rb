@@ -47,6 +47,7 @@ class OrdersController < ApplicationController
   def purchase
     if @order.purchaseable?
       @order.purchase!
+      session[:order_id] = nil
       redirect_to confirmation_order_path(@order)
     elsif @order.user.guest
       session[:last_order_page] = request.env['HTTP_REFERER'] || orders_path
