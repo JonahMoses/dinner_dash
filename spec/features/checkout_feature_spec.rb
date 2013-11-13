@@ -24,7 +24,7 @@ describe "the checkout process for a guest" do
   before :all do
     make_an_item
     visit '/'
-    click_on 'Log out'
+    click_on 'Log Out'
   end
 
   it "brings user to sign up page and back to order" do
