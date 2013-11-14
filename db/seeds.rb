@@ -2,7 +2,7 @@ class Seeder
 
   def create_data
     create_categories
-    create_orders
+    #create_orders
     10.times do
       create_item
     end
