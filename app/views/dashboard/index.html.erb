@@ -1,5 +1,13 @@
 <h1>Dashboard</h1>
 
+<h2>Orders by Status</h2>
+<div class="order-counts">
+  <% @orders_by_status.each do |k,v| %>
+    <%= k %>
+    <%= v %><br />
+  <% end %>
+</div>
+
 <h2>Open Orders</h2>
 <%= render partial: 'dashboard/orders/order_table', locals: { orders: @open_orders } %>
 
