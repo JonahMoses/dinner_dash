@@ -2,10 +2,18 @@
 
 <h2>Orders by Status</h2>
 <div class="order-counts">
-  <% @orders_by_status.each do |k,v| %>
-    <%= k %>
-    <%= v %><br />
-  <% end %>
+  <table class="table table-striped">
+    <tr>
+      <th>Status</th>
+      <th>Count</th>
+    </tr>
+    <% @orders_by_status.each do |k,v| %>
+      <tr>
+        <td><%= k %></td>
+        <td><%= v %><br /></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
 <h2>Open Orders</h2>
