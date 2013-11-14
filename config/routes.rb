@@ -1,4 +1,5 @@
 Foodfight::Application.routes.draw do
+  get "dashboard" => "dashboard#index", :as => 'dashboard'
   resources :categories
 
   resources :orders do

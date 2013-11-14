@@ -7,6 +7,10 @@ class Order < ActiveRecord::Base
     order_items.map(&:subtotal).reduce(:+)
   end
 
+  def items_count
+    order_items.map(&:quantity).reduce(:+)
+  end
+
   def self.find_unsubmitted_order_for(user_id)
     where(:status => 'unsubmitted').find_by_user_id(user_id)
   end

@@ -62,7 +62,11 @@ class OrdersController < ApplicationController
 
   private
     def set_order
-      @order = current_user.orders.find(params[:id])
+      if current_user.admin?
+        @order = Order.find(params[:id])
+      else
+        @order = current_user.orders.find(params[:id])
+      end
     end
 
     def order_params

@@ -1,0 +1,7 @@
+<h1>Dashboard</h1>
+
+<h2>Open Orders</h2>
+<%= render partial: 'dashboard/orders/order_table', locals: { orders: @open_orders } %>
+
+<h2>Closed Orders</h2>
+<%= render partial: 'dashboard/orders/order_table', locals: { orders: @closed_orders } %>
