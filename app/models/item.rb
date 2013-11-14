@@ -10,6 +10,13 @@ class Item < ActiveRecord::Base
   has_many                  :categories, through: :item_categories
   has_many                  :orders, through: :order_items
 
+  has_attached_file :image, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    medium: '300x300>'
+    },
+    :default_url => "default_image.png"
+
   def price=(input)
     input.delete!("$")
     super
