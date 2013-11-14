@@ -2,7 +2,7 @@
   <td><%= order.user.name %></td>
   <td><%= order.user.full_name %></td>
   <td><%= order.status %></td>
-  <td><%= order.total %></td>
+  <td><%= print_price order.total %></td>
   <td><%= order.items_count %></td>
   <td><%= order.created_at %></td>
   <td><%= link_to 'Show', order %></td>

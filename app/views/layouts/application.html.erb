@@ -8,20 +8,14 @@
 </head>
 <body>
 <div class="container-fluid">
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
 
   <div class="col-lg-12">
-    <div class="row center">
-    <%= image_tag("palm_tree1.png", class: "header-images pull-left") %>
-    <font style="font-weight: bold; display: inline-block; padding-top: 35px; font-size: 300%; margin-left: 27%;">The Best Hawaiian BBQ</font>
-    <%= image_tag("palm_tree2.png", class: "header-images pull-right") %>
-    </div>
+    <%= render 'layouts/header' %>
 
     <%= render 'layouts/navbar' %>
-  </div>
 
+    <%= render 'layouts/messages' %>
+  </div>
 
   <div class="col-lg-12">
     <br />
