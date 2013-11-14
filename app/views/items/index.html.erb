@@ -3,14 +3,12 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 
-<div class="items-index">
-  <div class="container">
-      <% @items.in_groups_of(3, false).each do |item_array| %>
-        <div class="row">
-          <%= render partial: 'items/item', collection: item_array %>
-        </div>
-      <% end %>
-  </div>
+<div class="container">
+    <% @items.in_groups_of(3, false).each do |item_array| %>
+      <div class="row col-md-4">
+        <%= render partial: 'items/item', collection: item_array %>
+      </div>
+    <% end %>
 </div>
 
 <% if allow? "items", "create" %>
