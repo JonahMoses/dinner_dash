@@ -10,7 +10,7 @@
 <ul class="nav">
   <li><%= link_to "Items", items_path %></li>
   <li class="divider-vertical"></li>
-  <li><%= link_to "Items in cart: --", orders_path %></a></li>
+  <li><%= link_to "Items in cart: #{order_items_count}", orders_path %></a></li>
   <li class="divider-vertical"></li>
   <li><a href="#">Contact</a></li>
   <li class="divider-vertical"></li>
