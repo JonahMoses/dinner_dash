@@ -1,15 +1,11 @@
-<ul class="nav pull-right">
-  <% if current_user %>
-    <li><%= link_to "#{current_user.display_name_available?}", edit_user_path(current_user.id) %></li>
-    <% if current_user.guest? %>
-      <li><%= link_to "Become a member", sign_up_path %></li>
-    <% else %>
-      <li class="divider-vertical"></li>
-      <li><%= link_to "Log Out", log_out_path, method: :post %></li>
-    <% end %>
+<% if current_user %>
+  <li><%= link_to "#{current_user.display_name_available?}", edit_user_path(current_user.id) %></li>
+  <% if current_user.guest? %>
+    <li><%= link_to "Become a member", sign_up_path %></li>
   <% else %>
-    <li><%= link_to "Sign Up", sign_up_path %></li>
-    <li class="divider-vertical"></li>
-    <li><%= link_to "Log In", log_in_path %></li>
+    <li><%= link_to "Log Out", log_out_path, method: :post %></li>
   <% end %>
-</ul>
+<% else %>
+  <li><%= link_to "Sign Up", sign_up_path %></li>
+  <li><%= link_to "Log In", log_in_path %></li>
+<% end %>

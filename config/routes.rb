@@ -1,5 +1,7 @@
 Foodfight::Application.routes.draw do
   resources :categories
+  root :to => "home#home_page"
+  # match '/home', to: 'home#home_page', via: 'get'
 
   resources :orders do
     post 'purchase', :on => :member
@@ -12,7 +14,6 @@ Foodfight::Application.routes.draw do
   get "log_in" => "sessions#new"
   get "sign_up" => "users#new"
 
-  root :to => "items#index"
   resources :users
   resources :sessions
   get "/code" => redirect("https://github.com/JonahMoses/dinner_dash")
