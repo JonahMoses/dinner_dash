@@ -34,7 +34,9 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Items in cart: #{order_items_count}", orders_path %></a></li>
+      <% if current_user %>
+        <li><%= link_to "Items in cart: #{order_items_count}", orders_path %></a></li>
+      <% end %>
       <%= render "users/user_nav" %>
     </ul>
 
