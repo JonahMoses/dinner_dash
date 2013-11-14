@@ -22,7 +22,7 @@ class OrderItemsController < ApplicationController
       @order_item.quantity += 1
       respond_to do |format|
         if @order_item.save
-          format.html { redirect_to orders_path, notice: 'Successfully added product to cart.' }
+          format.html { redirect_to order_path(@order), notice: 'Successfully added product to cart.' }
         else
           format.html { render action: 'new' }
         end

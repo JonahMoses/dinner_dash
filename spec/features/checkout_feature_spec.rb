@@ -62,10 +62,6 @@ describe "making a new order after purchasing an order" do
     click_on 'Show'
     click_on 'Purchase'
     add_item_to_order
-    within('.unsubmitted') do
-      click_on('Show')
-    end
-    # will have to look for first item_quanity
     within('.item_quantity') do
       expect(page).to have_content('1')
     end
