@@ -1,5 +1,14 @@
 <h1>Dashboard</h1>
 
+<div class="status-filtering">
+  <li><%= link_to "See All", dashboard_path %></li>
+  <li><%= link_to "Unsubmitted", dashboard_path(:status => "unsubmitted") %></li>
+  <li><%= link_to "Paid", dashboard_path(:status => "paid") %></li>
+  <li><%= link_to "Ordered", dashboard_path(:status => "ordered") %></li>
+  <li><%= link_to "Cancelled", dashboard_path(:status => "cancelled") %></li>
+  <li><%= link_to "Completed", dashboard_path(:status => "completed") %></li>
+</div>
+
 <h2>Orders by Status</h2>
 <div class="order-counts">
   <table class="table table-striped">
@@ -16,8 +25,8 @@
   </table>
 </div>
 
-<h2>Open Orders</h2>
-<%= render partial: 'dashboard/orders/order_table', locals: { orders: @open_orders } %>
+<%= render partial: 'dashboard/orders/order_table', locals: { orders: @filtered_orders } %>
+<% if @filtered_orders.length == 0 %>
+  No orders found
+<% end %>
 
-<h2>Closed Orders</h2>
-<%= render partial: 'dashboard/orders/order_table', locals: { orders: @closed_orders } %>

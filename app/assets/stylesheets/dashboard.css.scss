@@ -4,3 +4,17 @@
 
 .order-counts {
 }
+
+.status-filtering li {
+  font-size: 20px;
+  display:inline;
+  text-decoration: none;
+}
+
+.status-filtering li:after {
+  content: " | ";
+}
+
+.status-filtering li:last-child:after {
+  content: "";
+}
