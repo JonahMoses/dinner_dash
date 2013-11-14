@@ -7,6 +7,9 @@ gem 'faker'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 gem 'therubyracer'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'figaro'
 
 group :developemt, :test do
   gem 'rspec-rails', '~> 2.0'

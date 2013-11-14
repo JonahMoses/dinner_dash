@@ -1,7 +1,11 @@
  <div class="span4">
   <div class="item">
     <div class="item-image">
-      <td><%= image_tag("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQtEOtDbCA584KYoDzwXTvMF-p-LfHJjqZPtPQpw07BSRcYaMPW") %></td>
+      <td>
+        <div class="image-display">
+          <%= image_tag item.image.url(:square) %>
+        </div>
+      </td>
     </div>
     <div class="item-details">
       <h5>
