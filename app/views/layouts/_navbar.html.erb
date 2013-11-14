@@ -28,19 +28,6 @@
       <% if current_user && current_user.email %>
         <li><%= link_to "My profile", edit_user_path(current_user.id) %></li>
       <% end %>
-    </ul>
-
-    <ul class="nav">
-      <li><%= link_to "Items", items_path %></li>
-      <li class="divider-vertical"></li>
-      <li><%= link_to "Items in cart: #{order_items_count}", orders_path %></a></li>
-      <li class="divider-vertical"></li>
-      <li><a href="#">Contact</a></li>
-      <li class="divider-vertical"></li>
-      <% if current_user && current_user.email %>
-        <li><%= link_to "My profile", edit_user_path(current_user.id) %></li>
-        <li class="divider-vertical"></li>
-      <% end %>
       <% if current_user && current_user.admin? %>
         <li><%= link_to "Dashboard", dashboard_path %></li>
       <% end %>
