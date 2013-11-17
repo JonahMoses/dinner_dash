@@ -17,6 +17,8 @@ class Item < ActiveRecord::Base
     },
     :default_url => "default_image.png"
 
+    process_in_background :image
+
   def price=(input)
     input.delete!("$")
     super

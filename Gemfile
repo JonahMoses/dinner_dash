@@ -10,6 +10,10 @@ gem 'therubyracer'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro'
+gem 'sidekiq'
+gem 'delayed_paperclip'
+gem 'sinatra', require: false
+gem 'slim'
 
 group :developemt, :test do
   gem 'rspec-rails', '~> 2.0'
