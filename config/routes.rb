@@ -1,10 +1,10 @@
 require 'sidekiq/web'
+require 'admin_constraint'
 
 Foodfight::Application.routes.draw do
   get "dashboard" => "dashboard#index", :as => 'dashboard'
   resources :categories
   root :to => "home#home_page"
-  # match '/home', to: 'home#home_page', via: 'get'
 
   resources :orders do
     post 'purchase', :on => :member
@@ -23,6 +23,6 @@ Foodfight::Application.routes.draw do
   resources :item_categories
   resources :items
 
-  mount Sidekiq::Web, at: '/sidekiq'
+  mount Sidekiq::Web, at: '/sidekiq', :constraints => AdminConstraint.new
 
 end
