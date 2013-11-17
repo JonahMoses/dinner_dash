@@ -2,6 +2,7 @@
 
 - clone the project
 - bundle
+- the app requires redis to upload images (for admins only)
 
 ## To set up PG locally
 
