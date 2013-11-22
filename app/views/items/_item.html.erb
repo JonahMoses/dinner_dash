@@ -21,7 +21,7 @@
         <%= print_status item.active %>
       </div><br />
       <div class="pull-right">
-        <%= button_to 'Add to Cart', order_items_path(item_id: item.id), class: 'btn btn-danger btn-xs' %>
+        <%= button_to 'Add to Cart', order_items_path(item_id: item.id), class: 'btn btn-danger btn-xs add-to-cart', "data-item-id" => item.id %>
       </div>
       <%= button_to 'Show', item, method: :get, class: "item-show" %>
       <% if allow? "items", "edit" %>

@@ -14,3 +14,28 @@
 <% if allow? "items", "create" %>
   <%= link_to "New Item", new_item_path, :class => 'btn btn-primary' %>
 <% end %>
+
+<script>
+  var addButton = $('.add-to-cart');
+  addButton.on('click', function(e) {
+    e.preventDefault();
+    var itemId = $(this).data('item-id');
+    var slug = "/order_items"
+    var target = $(this);
+    $.ajax(slug, {
+      type: "POST",
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      },
+      dataType: "json",
+      data: { "item_id" : itemId },
+      success: function(data, textStatus, jqXHR) {
+        target.after("Added!");
+      }
+    });
+  });
+</script>
+
+
+
+

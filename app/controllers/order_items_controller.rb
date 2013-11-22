@@ -23,6 +23,7 @@ class OrderItemsController < ApplicationController
       respond_to do |format|
         if @order_item.save
           format.html { redirect_to order_path(@order), notice: 'Successfully added product to cart.' }
+          format.json { render json: @order_item }
         else
           format.html { render action: 'new' }
         end
